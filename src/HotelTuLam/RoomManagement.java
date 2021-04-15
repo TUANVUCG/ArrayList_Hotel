@@ -2,6 +2,7 @@ package HotelTuLam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class RoomManagement {
     List<Room> rooms = new ArrayList<>();
@@ -37,5 +38,27 @@ public class RoomManagement {
         }
     }
 
+
+    public int findIdCustomer(int id){
+        int index = -1;
+        for(Room room: rooms){
+            if(room.getCustomer().getId()==id){
+                index = id;
+                break;
+            }
+        }return index;
+    }
+
+
+    public void editInfoCustomer(int id){
+        int index =findIdCustomer(id);
+        if(index!=-1){
+            rooms.get(index).showRoomInfo();
+            rooms.get(index).inputRoomInfo();
+            rooms.get(index).showRoomInfo();
+        }else{
+            System.out.println("Không tìm thấy số CMND phù hợp");
+        }
+    }
 
 }

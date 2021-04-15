@@ -36,6 +36,11 @@ public class Main {
                     roomManagement.totalPayment(id);
                     break;
                 }
+                case  6 : {
+                    System.out.println("Nhập số CMND cần sửa : ");
+                    int id = scanner.nextInt();
+                    roomManagement.editInfoCustomer(id);
+                }
             }
         } while (choice != 0);
 
@@ -47,6 +52,7 @@ public class Main {
         System.out.println("2. Hiển thị thông tin khách hàng");
         System.out.println("3. Xóa thông tin một khách hàng");
         System.out.println("5. Thanh toán ");
+        System.out.println("6. Sửa thông tin khách hàng ");
         System.out.println("0. Exit");
     }
 }
