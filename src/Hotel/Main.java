@@ -3,57 +3,62 @@ package Hotel;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter number of Customer : ");
-        int number = scanner.nextInt();
-        Room[] rooms = new Room[number];
-        RoomManagement roomManagement = new RoomManagement(rooms);
-        int choice = -1;
-        do{
-            menu();
-            System.out.println("Enter your choice : ");
-            choice = scanner.nextInt();
-            switch (choice){
-                case 1 : {
-                    roomManagement.inputRooms();
-                    break;
-                }
-                case 2: {
-                    roomManagement.showRooms();
-                    break;
-                }
-                case 3 : {
-                    scanner.nextLine();
-                    System.out.println("Enter Customer's id ");
-                    String id = scanner.nextLine();
-                    roomManagement.deleteCustomer(id);
-                    break;
-                }
-                case 4: {
-                    scanner.nextLine();
-                    System.out.println("Enter Customer's id ");
-                    String id = scanner.nextLine();
-                    roomManagement.totalMoneyForPayment(id);
-                    break;
-                }
 
-                case 5: {
+    public static void main(String[] args) {
+        RoomManagement roomManagement = new RoomManagement();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        do {
+            menu();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1: {
                     Room room = new Room();
                     room.inputRoomInfo();
-                    roomManagement.addNewRoom(room);
+                    roomManagement.addRoomInfo(room);
+                    break;
+                }
+                case 2 : {
+                    roomManagement.showInfoRoom();
+                    break;
+                }
+                case 3: {
+                    System.out.print("Nhập số CMND khách hàng cần xóa: ");
+                    int id = scanner.nextInt();
+                    roomManagement.removeCustomerById(id);
+                    break;
+                }
+                case 5: {
+                    System.out.println("Nhập số CMND khách hàng cần thanh toán : ");
+                    int id = scanner.nextInt();
+                    roomManagement.totalPayment(id);
+                    break;
+                }
+                case  6 : {
+                    System.out.println("Nhập số CMND cần sửa : ");
+                    int id = scanner.nextInt();
+                    roomManagement.editInfoCustomer(id);
+                    break;
+                }
+                case 7: {
+                    System.out.println("Nhập CMND khách hàng cần xem :");
+                    int id = scanner.nextInt();
+                    roomManagement.findCustomerById(id);
                     break;
                 }
             }
-        }while (choice != 0);
+        } while (choice != 0);
+
     }
 
     private static void menu() {
-        System.out.println("1. Enter info customer ");
-        System.out.println("2. Show info customer ");
-        System.out.println("3. Remove info customer ");
-        System.out.println("4. Payment ");
-        System.out.println("5. Add info a customer ");
-        System.out.println("0. Exit ");
+        System.out.println("Nhập lựa chọn của bạn : ");
+        System.out.println("1. Thêm một khách hàng");
+        System.out.println("2. Hiển thị thông tin khách hàng");
+        System.out.println("3. Xóa thông tin một khách hàng");
+        System.out.println("5. Thanh toán ");
+        System.out.println("6. Sửa thông tin khách hàng ");
+        System.out.println("7. Tìm kiếm khách hàng");
+        System.out.println("0. Exit");
     }
 }

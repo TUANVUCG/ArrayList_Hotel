@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class Person {
     private String name;
-    private String birthOfDate;
-    private String id;
+    private String dateOfBirth;
+    private int id;
 
     public Person() {
     }
 
-    public Person(String name, String birthOfDate, String id) {
+    public Person(String name, String dateOfBirth, int id) {
         this.name = name;
-        this.birthOfDate = birthOfDate;
+        this.dateOfBirth = dateOfBirth;
         this.id = id;
     }
 
@@ -24,32 +24,32 @@ public class Person {
         this.name = name;
     }
 
-    public String getBirthOfDate() {
-        return birthOfDate;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setBirthOfDate(String birthOfDate) {
-        this.birthOfDate = birthOfDate;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-
-    public void inputPersonInfo(){
+    public void inputInfo(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter name: ");
+        System.out.print("Nhập tên khách hàng : ");
         this.name = scanner.nextLine();
-        System.out.println("Enter birth of date : ");
-        this.birthOfDate = scanner.nextLine();
-        System.out.println("Enter the id : ");
-        this.id = scanner.nextLine();
+        System.out.print("Nhập ngày sinh khách hàng : ");
+        this.dateOfBirth = scanner.nextLine();
+        System.out.print("Nhập số CMND khách : ");
+        this.id = scanner.nextInt();
     }
-    public void showPersonInfo(){
-        System.out.printf("Name:  %s, Date of birth : %s, Id : %s ", name, birthOfDate,id);
+
+    public void showInfo(){
+        System.out.printf("Tên: %s, Ngày sinh : %s, Số CMND: %s", this.name, this.dateOfBirth, this.id);
     }
 }

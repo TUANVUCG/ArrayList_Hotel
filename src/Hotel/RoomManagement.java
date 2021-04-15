@@ -1,68 +1,65 @@
 package Hotel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoomManagement {
-    private Room[] rooms;
-
-    public RoomManagement(Room[] rooms) {
-        this.rooms = rooms;
-    }
-
-
-    public void inputRooms() {
-        for (int i = 0; i < rooms.length; i++) {
-            rooms[i] = new Room();
-            rooms[i].inputRoomInfo();
-        }
-    }
-
-    public Room[] addNewRoom(Room room) {
-        Room[] newRooms = new Room[this.rooms.length + 1];
-        for (int i = 0; i < this.rooms.length; i++) {
-            newRooms[i] = rooms[i];
-        }
-        newRooms[this.rooms.length] = room;
-        rooms = newRooms;
-        return rooms;
-    }
-
-    public void showRooms() {
-        for (Room room : rooms) {
-            room.showRoomInfo();
-        }
-    }
-
-    public int findCustomerById(String id) {
+    List<Room> rooms = new ArrayList<>();
+    // Tìm Id
+    public int findIdCustomer(int id) {
         int index = -1;
-        for (int i = 0; i < rooms.length; i++) {
-            if (id.equals(rooms[i].getCustomer().getId())) {
-                index = i;
+        for (Room room : rooms) {
+            if (room.getCustomer().getId() == id) {
+                index = id;
                 break;
             }
         }
         return index;
     }
-
-    public Room[] deleteCustomer(String id) {
-        Room[] newRoom = new Room[rooms.length - 1];
-        int index = findCustomerById(id);
-        for (int i = 0; i < index; i++) {
-            newRoom[i] = rooms[i];
-        }
-        for (int i = index + 1; i < newRoom.length; i++) {
-            newRoom[i - 1] = rooms[i];
-        }
-        rooms = newRoom;
-        return rooms;
+    // Them phan tu
+    public void addRoomInfo(Room room) {
+        rooms.add(room);
     }
 
-    public Room[] totalMoneyForPayment(String id) {
-        int index = findCustomerById(id);
-        if (index == -1) {
-            System.out.println("Not find this id : ");
-            return rooms;
+    // Xoa phan tu
+    public void removeCustomerById(int id) {
+        int index = findIdCustomer(id);
+        rooms.removeIf(room -> room.getCustomer().getId() == index);
+    }
+
+
+    // Tim theo Id
+    public void findCustomerById(int id) {
+        for (Room room : rooms) {
+            if (room.getCustomer().getId() == id) {
+                room.getCustomer().showInfo();
+            }
+        }
+    }
+
+    // Thanh toan
+    public void totalPayment(int id) {
+        for (Room room : rooms) {
+            if (room.getCustomer().getId() == id) {
+                System.out.println("Tổng thanh toán : " + room.getPrice() * room.getDays());
+            }
+        }
+    }
+    // Hien thi thong tin phong
+    public void showInfoRoom() {
+        for (Room room : rooms) {
+            room.showRoomInfo();
+        }
+    }
+
+
+    // Sua thong tin khach hang
+    public void editInfoCustomer(int id) {
+        int index = findIdCustomer(id);
+        if (index != -1) {
+            rooms.get(index - 1).inputRoomInfo();
         } else {
-            System.out.println("Total for Payment is : " + rooms[index].getDay() * rooms[index].getPrice());
-            return deleteCustomer(id);
+            System.out.println("Không tìm thấy số CMND phù hợp !");
         }
     }
 

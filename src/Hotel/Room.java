@@ -3,7 +3,7 @@ package Hotel;
 import java.util.Scanner;
 
 public class Room {
-    private double day;
+    private double days;
     private String type;
     private double price;
     private Person customer = new Person();
@@ -11,19 +11,19 @@ public class Room {
     public Room() {
     }
 
-    public Room(double day, String type, double price, Person customer) {
-        this.day = day;
+    public Room(double days, String type, double price, Person customer) {
+        this.days = days;
         this.type = type;
         this.price = price;
         this.customer = customer;
     }
 
-    public double getDay() {
-        return day;
+    public double getDays() {
+        return days;
     }
 
-    public void setDay(double day) {
-        this.day = day;
+    public void setDays(double days) {
+        this.days = days;
     }
 
     public String getType() {
@@ -51,20 +51,20 @@ public class Room {
     }
 
     public void inputRoomInfo(){
-        this.customer.inputPersonInfo();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input days : ");
-        day = scanner.nextDouble();
+        this.customer.inputInfo();
+        Scanner scanner =  new Scanner(System.in);
+        System.out.print("Nhập số ngày trọ :");
+        this.days = scanner.nextDouble();
         scanner.nextLine();
-        System.out.println("Input type : ");
-        type = scanner.nextLine();
-        System.out.println("Input price : ");
-        price = scanner.nextDouble();
-        scanner.nextLine();
+        System.out.print("Nhập loại phòng trọ : ");
+        this.type = scanner.nextLine();
+        System.out.print("Nhập giá phòng : ");
+        this.price = scanner.nextDouble();
     }
 
+
     public void showRoomInfo(){
-        customer.showPersonInfo();
-        System.out.printf("Day: %f, Type: %s, Price: %f\n", day, type, price);
+        this.customer.showInfo();
+        System.out.printf("Số ngày trọ : %f, Loại phòng: %s, Giá phòng : %f\n", this.days,this.type, this.price);
     }
 }
