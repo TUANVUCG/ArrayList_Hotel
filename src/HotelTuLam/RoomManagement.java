@@ -53,9 +53,9 @@ public class RoomManagement {
     public void editInfoCustomer(int id){
         int index =findIdCustomer(id);
         if(index!=-1){
-            rooms.get(index).showRoomInfo();
-            rooms.get(index).inputRoomInfo();
-            rooms.get(index).showRoomInfo();
+            rooms.get(index-1).showRoomInfo();
+            rooms.get(index-1).inputRoomInfo();
+            rooms.get(index-1).showRoomInfo();
         }else{
             System.out.println("Không tìm thấy số CMND phù hợp");
         }

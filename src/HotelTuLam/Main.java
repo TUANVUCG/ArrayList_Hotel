@@ -40,6 +40,7 @@ public class Main {
                     System.out.println("Nhập số CMND cần sửa : ");
                     int id = scanner.nextInt();
                     roomManagement.editInfoCustomer(id);
+                    break;
                 }
             }
         } while (choice != 0);
